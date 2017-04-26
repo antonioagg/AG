@@ -7,7 +7,6 @@ if($_POST) {
 
    $name = trim(stripslashes($_POST['contactName']));
    $email = trim(stripslashes($_POST['contactEmail']));
-   $subject = trim(stripslashes($_POST['contactSubject']));
    $message = trim(stripslashes($_POST['contactMessage']));
 
    // Check Name
@@ -22,10 +21,7 @@ if($_POST) {
 	if (strlen($contact_message) < 15) {
 		$error['message'] = "Please enter your message. It should have at least 15 characters.";
 	}
-   // Subject
-	if ($subject == '') { $subject = "Contact Form Submission"; }
-
-
+   
    // Set Message
    $message .= "Email from: " . $name . "<br />";
 	$message .= "Email address: " . $email . "<br />";
