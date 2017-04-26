@@ -1,6 +1,5 @@
-﻿<?php
+<?php
 
-// Replace this with your own email address
 $siteOwnersEmail = 'antonioangelgalagomez@gmail.com';
 
 
@@ -9,7 +8,7 @@ if($_POST) {
    $name = trim(stripslashes($_POST['contactName']));
    $email = trim(stripslashes($_POST['contactEmail']));
    $subject = trim(stripslashes($_POST['contactSubject']));
-   $contact_message = trim(stripslashes($_POST['contactMessage']));
+   $message = trim(stripslashes($_POST['contactMessage']));
 
    // Check Name
 	if (strlen($name) < 2) {
