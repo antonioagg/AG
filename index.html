@@ -490,7 +490,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
-                    <form action="enviar.php" method="post">
+          
+                        <form name="contactform" method="post" action="enviar.php">
+
                         <div class="row row-sm-offset">
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
@@ -509,7 +511,7 @@
                             <label class="form-control-label" for="form1-f-message">Mensaje</label>
                             <textarea class="form-control" name="message" rows="7" data-form-field="Message" id="form1-f-message"></textarea>
                         </div>
-                        <div><button type="submit" class="btn btn-primary">Contacta Conmigo</button></div>
+                        <div><button type="submit" class="btn btn-primary" value="Enviar">Contacta Conmigo</button></div>
                     </form>
                 </div>
             </div>
