@@ -1,0 +1,90 @@
+* {box-sizing: border-box}
+
+
+/*.rcorners2 {
+    border-radius: 15px;
+    border: 2px solid #73AD21;
+    padding: 2px; 
+
+}*/
+
+.container-skillz {
+  border-radius: 15px;
+  border: 2px solid #fac51c;
+  width: 90%;
+  padding: 10px; 
+margin: 0 auto;
+
+  background-color: #FFFFFF;
+}
+
+.skills {
+  text-align: right;
+  padding-right: 2px;
+  line-height: 40px;
+  color: white;
+}
+
+.html {	    border-radius: 5px;
+ 			border: 2px;
+ 			width: 90%; 			
+ 			background-color: #00E676;}
+
+.css {		border-radius: 5px;
+ 			border: 2px;			
+ 			width: 80%; 
+ 			background-color: #00BCD4;}
+
+.js {		border-radius: 5px;
+ 			border: 2px;
+			width: 75%; 
+			background-color: #F44336;}
+
+.node {		border-radius: 5px;
+ 			border: 2px;
+			width: 70%; 
+			background-color: #9C27B0;}
+
+.mongodb {		border-radius: 5px;
+ 			border: 2px;
+			width: 75%; 
+			background-color: #FF5722;}
+
+.angular {		border-radius: 5px;
+ 			border: 2px;
+			width: 60%; 
+			background-color: #03A9F4;}
+
+.express {		border-radius: 5px;
+ 			border: 2px;
+			width: 75%; 
+			background-color: #FFC107;}
+
+.meteor {   border-radius: 5px;
+ 			border: 2px;
+			width: 60%; 
+			background-color: #43a047;}
+
+.phyton {   border-radius: 5px;
+ 			border: 2px;
+			width: 50%; 
+			background-color: #ff5252;}
+.photoshop {   border-radius: 5px;
+ 			border: 2px;
+			width: 90%; 
+			background-color: #0097a7;}
+
+.illustrator {   border-radius: 5px;
+ 			border: 2px;
+			width: 80%; 
+			background-color: #f57f17;}
+
+.hadoop {   border-radius: 5px;
+ 			border: 2px;
+			width: 50%; 
+			background-color: #f50057;}
+
+.spark {   border-radius: 5px;
+ 			border: 2px;
+			width: 40%; 
+			background-color: #2979ff;}
