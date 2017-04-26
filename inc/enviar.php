@@ -1,64 +1,119 @@
+ 
 <?php
-
-$siteOwnersEmail = 'antonioangelgalagomez@gmail.com';
-
-
-if($_POST) {
-
-   $name = trim(stripslashes($_POST['contactName']));
-   $email = trim(stripslashes($_POST['contactEmail']));
-   $message = trim(stripslashes($_POST['contactMessage']));
-
-   // Check Name
-	if (strlen($name) < 2) {
-		$error['name'] = "Please enter your name.";
-	}
-	// Check Email
-	if (!preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)) {
-		$error['email'] = "Please enter a valid email address.";
-	}
-	// Check Message
-	if (strlen($contact_message) < 15) {
-		$error['message'] = "Please enter your message. It should have at least 15 characters.";
-	}
-   
-   // Set Message
-   $message .= "Email from: " . $name . "<br />";
-	$message .= "Email address: " . $email . "<br />";
-   $message .= "Message: <br />";
-   $message .= $contact_message;
-   $message .= "<br /> ----- <br /> This email was sent from your site's contact form. <br />";
-
-   // Set From: header
-   $from =  $name . " <" . $email . ">";
-
-   // Email Headers
-	$headers = "From: " . $from . "\r\n";
-	$headers .= "Reply-To: ". $email . "\r\n";
- 	$headers .= "MIME-Version: 1.0\r\n";
-	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-
-   if (!$error) {
-
-      ini_set("sendmail_from", $siteOwnersEmail); // for windows server
-      $mail = mail($siteOwnersEmail, $subject, $message, $headers);
-
-		if ($mail) { echo "OK"; }
-      else { echo "Something went wrong. Please try again."; }
-		
-	} # end if - no validation error
-
-	else {
-
-		$response = (isset($error['name'])) ? $error['name'] . "<br /> \n" : null;
-		$response .= (isset($error['email'])) ? $error['email'] . "<br /> \n" : null;
-		$response .= (isset($error['message'])) ? $error['message'] . "<br />" : null;
-		
-		echo $response;
-
-	} # end if - there was a validation error
-
+if(isset($_POST['email'])) {
+ 
+    // 
+ 
+    $email_to = "antonioangelgalagomez@gmail.com";
+ 
+    $email_subject = "Contacto desde Web";
+ 
+    function died($error) {
+ 
+        // mensajes de error
+ 
+        echo "Lo sentimos, hubo un error en sus datos y el formulario no puede ser enviado en este momento. ";
+ 
+        echo "Detalle de los errores.<br /><br />";
+ 
+        echo $error."<br /><br />";
+ 
+        echo "Porfavor corrija estos errores e inténtelo de nuevo.<br /><br />";
+        die();
+    }
+ 
+    // Se valida que los campos del formulairo estén llenos
+ 
+    if(!isset($_POST['name']) ||
+ 
+        !isset($_POST['email']) ||
+ 
+        !isset($_POST['message'])) {
+ 
+        die('Lo sentimos pero parece haber un problema con los datos enviados.');
+ 
+    }
+ //En esta parte el valor "name"  sirve para crear las variables que recolectaran la información de cada campo
+ 
+    $name = $_POST['name']; // requerido
+ 
+    $email_from = $_POST['email']; // requerido
+ 
+    $message = $_POST['message']; // requerido
+ 
+    $error_message = "";//Linea numero 52;
+ 
+//En esta parte se verifica que la dirección de correo sea válida 
+ 
+   $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
+ 
+  if(!preg_match($email_exp,$email_from)) {
+ 
+    $error_message .= 'La dirección de correo proporcionada no es válida.<br />';
+ 
+  }
+ 
+//En esta parte se validan las cadenas de texto
+ 
+    $string_exp = "/^[A-Za-z .'-]+$/";
+ 
+  if(!preg_match($string_exp,$first_name)) {
+ 
+    $error_message .= 'El formato del nombre no es válido<br />';
+ 
+  }
+  
+  if(strlen($message) < 2) {
+ 
+    $error_message .= 'El formato del texto no es válido.<br />';
+ 
+  }
+ 
+  if(strlen($error_message) > 0) {
+ 
+    die($error_message);
+ 
+  }
+ 
+//Este es el cuerpo del mensaje tal y como llegará al correo
+ 
+    $email_message = "Contenido del Mensaje.\n\n";
+ 
+ 
+ 
+    function clean_string($string) {
+ 
+      $bad = array("content-type","bcc:","to:","cc:","href");
+ 
+      return str_replace($bad,"",$string);
+ 
+    }
+ 
+    $email_message .= "Nombre: ".clean_string($name)."\n";
+ 
+    $email_message .= "Email: ".clean_string($email_from)."\n";
+ 
+    $email_message .= "Mensaje: ".clean_string($message)."\n";
+ 
+ 
+//Se crean los encabezados del correo
+ 
+$headers = 'From: '.$email_from."\r\n".
+ 
+'Reply-To: '.$email_from."\r\n" .
+ 
+'X-Mailer: PHP/' . phpversion();
+ 
+@mail($email_to, $email_subject, $email_message, $headers);
+ 
+?>
+  
+<!-- Mensaje de que fue enviado-->
+ 
+Gracias! Me pondré en contacto contigo a breve.
+ 
+<?php
+ 
 }
-
+ 
 ?>
